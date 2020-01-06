@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Globals</name>
+    <events>
+        <variable constant="1" name="PLAYER_NAME" sid="694424304325193" static="0" type="text">&quot;maho&quot;</variable>
+        <variable constant="1" name="game_name" sid="756745020439567" static="0" type="text">WR2D</variable>
+        <variable constant="1" name="instance_name" sid="606970188205048" static="0" type="text">default</variable>
+        <variable constant="1" name="room_name" sid="618542678178064" static="0" type="text">main</variable>
+    </events>
+</c2eventsheet>

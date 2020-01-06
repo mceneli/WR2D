@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2project>
+    <name>WR2D</name>
+    <description>Topdown Shooter</description>
+    <version>1.0.0.0</version>
+    <author>Muhammet Çeneli</author>
+    <author-email>muhammetceneli@gmail.com</author-email>
+    <author-website>http://</author-website>
+    <app-id>com.mahoo.wr2d</app-id>
+    <unique-id>10wh35xw2n9cq</unique-id>
+    <saved-with-version>27500</saved-with-version>
+    <used-plugins>
+        <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
+        <plugin author="Scirra" id="Mouse" version="1">Mouse</plugin>
+        <plugin author="Scirra" id="Multiplayer" version="1">Multiplayer</plugin>
+        <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
+        <plugin author="Scirra" id="Text" version="1">Text</plugin>
+        <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
+        <plugin author="Scirra" id="Tilemap" version="1">Tilemap</plugin>
+        <plugin author="Scirra" id="Touch" version="1">Touch</plugin>
+    </used-plugins>
+    <used-behaviors>
+        <behavior author="Scirra" id="EightDir" version="1">8 Direction</behavior>
+        <behavior author="Scirra" id="scrollto" version="1">Scroll To</behavior>
+        <behavior author="Scirra" id="solid" version="1">Solid</behavior>
+    </used-behaviors>
+    <used-effects />
+    <configurations>
+        <configuration exporter-descname="HTML5" exporter-id="html5" name="HTML5" />
+    </configurations>
+    <window-size>
+        <width>1280</width>
+        <height>720</height>
+    </window-size>
+    <pixel-rounding>0</pixel-rounding>
+    <preview-effects>1</preview-effects>
+    <use-loader-layout>0</use-loader-layout>
+    <configuration-settings>
+        <prop name="Clear background">Yes</prop>
+        <prop name="Downscaling">Medium quality</prop>
+        <prop name="Enable WebGL">On</prop>
+        <prop name="Fullscreen in browser">Letterbox scale</prop>
+        <prop name="Fullscreen scaling">High quality</prop>
+        <prop name="Loader style">Construct 2 splash</prop>
+        <prop name="Orientations">Landscape</prop>
+        <prop name="Pause on unfocus">No</prop>
+        <prop name="Physics engine">Box2D asm.js</prop>
+        <prop name="Preload sounds">Yes</prop>
+        <prop name="Preview browser">(default)</prop>
+        <prop name="Sampling">Linear</prop>
+        <prop name="Use high-DPI display">Yes</prop>
+    </configuration-settings>
+    <object-folder>
+        <object-type name="Tilemap" sid="880254796047847">
+            <plugin id="Tilemap" />
+            <texture original-source="C:\Users\Bilgisayar\Desktop\Kenney Topdown\Tilesheet\tilesheet_complete.png" />
+            <tiles />
+        </object-type>
+        <object-type name="Tilebackground" sid="656739445480991">
+            <plugin id="TiledBg" />
+            <behaviors>
+                <behavior-type name="Solid" sid="368250968770338">
+                    <behavior id="solid" />
+                </behavior-type>
+            </behaviors>
+            <texture />
+        </object-type>
+        <object-type name="Player" sid="891496497738571">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="id" sid="200086284711846" type="string" />
+                <instance-variable name="inputs" sid="215540520266102" type="number" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="ScrollTo" sid="200262393065451">
+                    <behavior id="scrollto" />
+                </behavior-type>
+                <behavior-type name="8Direction" sid="574442314806239">
+                    <behavior id="EightDir" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="378465155040190" speed="5">
+                    <frame duration="1" hotspotX="0.326531" hotspotY="0.511628" original-source="C:\Users\Bilgisayar\Desktop\Kenney Topdown\PNG\Man Blue\manBlue_machine.png">
+                        <collision-poly>
+                            <point x="0.204081" y="1" />
+                            <point x="0.0357146" y="0.523256" />
+                            <point x="0.155612" y="0.00872063" />
+                            <point x="0.459183" y="0.0595927" />
+                            <point x="0.711734" y="0.877907" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Mouse" sid="196300811802164">
+            <plugin id="Mouse" />
+        </object-type>
+        <object-type name="Multiplayer" sid="453524898424041">
+            <plugin id="Multiplayer" />
+        </object-type>
+        <object-type name="mperror" sid="501386655514178">
+            <plugin id="Text" />
+        </object-type>
+        <object-type name="Touch" sid="337250244681899">
+            <plugin id="Touch" />
+        </object-type>
+        <object-type name="Keyboard" sid="526817380651050">
+            <plugin id="Keyboard" />
+        </object-type>
+    </object-folder>
+    <families />
+    <layout-folder>
+        <layout>Layout 1.xml</layout>
+    </layout-folder>
+    <event-folder>
+        <event-sheet>Event sheet 1.xml</event-sheet>
+        <event-sheet>Globals.xml</event-sheet>
+    </event-folder>
+    <global-instances>
+        <global-instance type="Mouse" uid="68" />
+        <global-instance type="Multiplayer" uid="70" />
+        <global-instance type="Touch" uid="72">
+            <properties>
+                <use-mouse-input>Yes</use-mouse-input>
+            </properties>
+        </global-instance>
+        <global-instance type="Keyboard" uid="73" />
+    </global-instances>
+    <sounds-folder />
+    <music-folder />
+    <files-folder>
+        <file-folder name="Icons">
+            <file name="icon-16.png" />
+            <file name="icon-32.png" />
+            <file name="icon-114.png" />
+            <file name="icon-128.png" />
+            <file name="icon-256.png" />
+            <file name="loading-logo.png" />
+        </file-folder>
+    </files-folder>
+</c2project>
