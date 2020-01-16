@@ -15,6 +15,11 @@
                             <param id="1" name="Precision">3</param>
                             <param id="2" name="Interpolation">0</param>
                         </action>
+                        <action id="15" name="Add client input value" sid="978045071603150" type="Multiplayer">
+                            <param id="0" name="Tag">&quot;pangle&quot;</param>
+                            <param id="1" name="Precision">2</param>
+                            <param id="2" name="Interpolation">0</param>
+                        </action>
                         <action id="11" name="Sync object" sid="328250275310404" type="Multiplayer">
                             <param id="0" name="Object">Player</param>
                             <param id="1" name="Data">3</param>
@@ -27,6 +32,13 @@
                             <param id="2" name="Precision">3</param>
                             <param id="3" name="Interpolation">0</param>
                             <param id="4" name="Client value tag">&quot;inputs&quot;</param>
+                        </action>
+                        <action id="12" name="Sync instance variable" sid="705687374026568" type="Multiplayer">
+                            <param id="0" name="Object">Player</param>
+                            <param id="1" name="Instance variable">Player|id</param>
+                            <param id="2" name="Precision">2</param>
+                            <param id="3" name="Interpolation">0</param>
+                            <param id="4" name="Client value tag">&quot;pangle&quot;</param>
                         </action>
                         <action id="1" name="Connect" sid="785209225636631" type="Multiplayer">
                             <param id="0" name="Server">&quot;wss://multiplayer.scirra.com&quot;</param>
@@ -155,10 +167,6 @@
                             <param id="0" name="Object">Player</param>
                             <param id="1" name="Peer ID">Multiplayer.PeerID</param>
                         </action>
-                        <action id="13" name="Associate object with peer" sid="386733114203894" type="Multiplayer">
-                            <param id="0" name="Object">Player</param>
-                            <param id="1" name="Peer ID">Multiplayer.PeerID</param>
-                        </action>
                     </actions>
                 </event-block>
                 <event-group description="" sid="771287983093956" title="Controls">
@@ -238,14 +246,21 @@
                             <conditions>
                                 <condition id="-7" name="Compare instance variable" sid="205634679722872" type="Player">
                                     <param id="0" name="Instance variable">id</param>
-                                    <param id="1" name="Comparison">1</param>
-                                    <param id="2" name="Value">Multiplayer.MyID</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">Multiplayer.PeerID</param>
                                 </condition>
                             </conditions>
                             <actions>
                                 <action id="-10" name="Set value" sid="214586968521833" type="Player">
                                     <param id="0" name="Instance variable">inputs</param>
                                     <param id="1" name="Value">Multiplayer.PeerState(Multiplayer.PeerID,&quot;inputs&quot;)</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="517286311463539" type="Player">
+                                    <param id="0" name="Instance variable">pangle</param>
+                                    <param id="1" name="Value">Multiplayer.PeerState(Multiplayer.PeerID,&quot;pangle&quot;)</param>
+                                </action>
+                                <action id="-8" name="Set angle" sid="284916595840043" type="Player">
+                                    <param id="0" name="Angle">Player.pangle</param>
                                 </action>
                             </actions>
                             <sub-events>
@@ -349,7 +364,12 @@
                                     <param id="2" name="Value">Multiplayer.PeerID</param>
                                 </condition>
                             </conditions>
-                            <actions />
+                            <actions>
+                                <action id="-10" name="Set value" sid="186387328896678" type="Player">
+                                    <param id="0" name="Instance variable">pangle</param>
+                                    <param id="1" name="Value">int(Player.Angle)</param>
+                                </action>
+                            </actions>
                             <sub-events>
                                 <event-block sid="157983451807804">
                                     <conditions>
@@ -453,6 +473,10 @@
                                         <action id="14" name="Set client state" sid="417912161407542" type="Multiplayer">
                                             <param id="0" name="Tag">&quot;inputs&quot;</param>
                                             <param id="1" name="Value">Player.inputs</param>
+                                        </action>
+                                        <action id="14" name="Set client state" sid="811659427466498" type="Multiplayer">
+                                            <param id="0" name="Tag">&quot;pangle&quot;</param>
+                                            <param id="1" name="Value">Player.pangle</param>
                                         </action>
                                     </actions>
                                 </event-block>

@@ -1872,6 +1872,7 @@
                     <instance-variables>
                         <id></id>
                         <inputs>0</inputs>
+                        <pangle>0</pangle>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="ScrollTo">
