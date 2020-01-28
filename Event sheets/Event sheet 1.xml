@@ -10,13 +10,13 @@
                         <condition id="-2" name="On start of layout" sid="415984598357627" type="System" />
                     </conditions>
                     <actions>
-                        <action id="15" name="Add client input value" sid="888473737017839" type="Multiplayer">
-                            <param id="0" name="Tag">&quot;inputs&quot;</param>
-                            <param id="1" name="Precision">3</param>
-                            <param id="2" name="Interpolation">0</param>
-                        </action>
                         <action id="15" name="Add client input value" sid="978045071603150" type="Multiplayer">
                             <param id="0" name="Tag">&quot;pangle&quot;</param>
+                            <param id="1" name="Precision">2</param>
+                            <param id="2" name="Interpolation">0</param>
+                        </action>
+                        <action id="15" name="Add client input value" sid="340702213742236" type="Multiplayer">
+                            <param id="0" name="Tag">&quot;moveangle&quot;</param>
                             <param id="1" name="Precision">2</param>
                             <param id="2" name="Interpolation">0</param>
                         </action>
@@ -26,19 +26,19 @@
                             <param id="2" name="Precision">1</param>
                             <param id="3" name="Bandwidth">0</param>
                         </action>
-                        <action id="12" name="Sync instance variable" sid="999415371507346" type="Multiplayer">
-                            <param id="0" name="Object">Player</param>
-                            <param id="1" name="Instance variable">Player|id</param>
-                            <param id="2" name="Precision">3</param>
-                            <param id="3" name="Interpolation">0</param>
-                            <param id="4" name="Client value tag">&quot;inputs&quot;</param>
-                        </action>
                         <action id="12" name="Sync instance variable" sid="705687374026568" type="Multiplayer">
                             <param id="0" name="Object">Player</param>
                             <param id="1" name="Instance variable">Player|id</param>
                             <param id="2" name="Precision">2</param>
                             <param id="3" name="Interpolation">0</param>
                             <param id="4" name="Client value tag">&quot;pangle&quot;</param>
+                        </action>
+                        <action id="12" name="Sync instance variable" sid="523081157437999" type="Multiplayer">
+                            <param id="0" name="Object">Player</param>
+                            <param id="1" name="Instance variable">Player|id</param>
+                            <param id="2" name="Precision">2</param>
+                            <param id="3" name="Interpolation">0</param>
+                            <param id="4" name="Client value tag">&quot;moveangle&quot;</param>
                         </action>
                         <action id="1" name="Connect" sid="785209225636631" type="Multiplayer">
                             <param id="0" name="Server">&quot;wss://multiplayer.scirra.com&quot;</param>
@@ -181,62 +181,70 @@
                             </conditions>
                             <actions />
                             <sub-events>
-                                <event-block sid="213212113984324">
-                                    <conditions>
-                                        <condition id="2" name="Key is down" sid="852788341622150" type="Keyboard">
-                                            <param id="0" name="Key">87</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action behavior="8Direction" id="7" name="Simulate control" sid="937027317428270" type="Player">
-                                            <param id="0" name="Control">2</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <event-block sid="724408832548017">
-                                    <conditions>
-                                        <condition id="2" name="Key is down" sid="525333383686006" type="Keyboard">
-                                            <param id="0" name="Key">65</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action behavior="8Direction" id="7" name="Simulate control" sid="738860894620797" type="Player">
-                                            <param id="0" name="Control">0</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <event-block sid="891825571675986">
-                                    <conditions>
-                                        <condition id="2" name="Key is down" sid="844266806004496" type="Keyboard">
-                                            <param id="0" name="Key">83</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action behavior="8Direction" id="7" name="Simulate control" sid="759585241555521" type="Player">
-                                            <param id="0" name="Control">3</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <event-block sid="895759405596973">
-                                    <conditions>
-                                        <condition id="2" name="Key is down" sid="913198050112841" type="Keyboard">
-                                            <param id="0" name="Key">68</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action behavior="8Direction" id="7" name="Simulate control" sid="567300527539447" type="Player">
-                                            <param id="0" name="Control">1</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
                                 <event-block sid="793713996709122">
                                     <conditions>
                                         <condition id="-1" name="Every tick" sid="898991306948333" type="System" />
                                     </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block sid="302919561846276">
+                                            <conditions>
+                                                <condition id="-8" name="Compare two values" sid="484528902117218" type="System">
+                                                    <param id="0" name="First value">Touch.Beta</param>
+                                                    <param id="1" name="Comparison">4</param>
+                                                    <param id="2" name="Second value">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-8" name="Set angle" sid="724210101890111" type="Player">
+                                                    <param id="0" name="Angle">-atan(Touch.Gamma/Touch.Beta)</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="270200656673843">
+                                            <conditions>
+                                                <condition id="-22" name="Else" sid="420900246073711" type="System" />
+                                            </conditions>
+                                            <actions>
+                                                <action id="-8" name="Set angle" sid="777098737259792" type="Player">
+                                                    <param id="0" name="Angle">180-atan(Touch.Gamma/Touch.Beta)</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                                <event-block sid="522572608040315">
+                                    <conditions>
+                                        <condition id="4" name="Is touching object" sid="367490025143775" type="Touch">
+                                            <param id="0" name="Object">biganalog</param>
+                                        </condition>
+                                    </conditions>
                                     <actions>
-                                        <action id="-22" name="Set angle toward position" sid="761736209172074" type="Player">
-                                            <param id="0" name="X">Mouse.X</param>
-                                            <param id="1" name="Y">Mouse.Y</param>
+                                        <action id="-4" name="Set position to another object" sid="734110761254105" type="smallanalog">
+                                            <param id="0" name="Object">biganalog</param>
+                                            <param id="1" name="Image point (optional)">0</param>
+                                        </action>
+                                        <action id="-8" name="Set angle" sid="443617446581090" type="smallanalog">
+                                            <param id="0" name="Angle">angle(biganalog.X,biganalog.Y,Touch.X(&quot;HUD&quot;),Touch.Y(&quot;HUD&quot;))</param>
+                                        </action>
+                                        <action id="-23" name="Move at angle" sid="711373648751299" type="smallanalog">
+                                            <param id="0" name="Angle">Self.Angle</param>
+                                            <param id="1" name="Distance">min(distance(biganalog.X,biganalog.Y,Touch.X(&quot;HUD&quot;),Touch.Y(&quot;HUD&quot;)),75)</param>
+                                        </action>
+                                        <action id="-23" name="Move at angle" sid="764888615199230" type="Player">
+                                            <param id="0" name="Angle">smallanalog.Angle</param>
+                                            <param id="1" name="Distance">4</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block disabled="1" sid="179900128364394">
+                                    <conditions>
+                                        <condition id="1" name="On any touch end" sid="157537513005087" type="Touch" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-4" name="Set position to another object" sid="220849739006043" type="smallanalog">
+                                            <param id="0" name="Object">biganalog</param>
+                                            <param id="1" name="Image point (optional)">0</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -251,72 +259,31 @@
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-10" name="Set value" sid="214586968521833" type="Player">
-                                    <param id="0" name="Instance variable">inputs</param>
-                                    <param id="1" name="Value">Multiplayer.PeerState(Multiplayer.PeerID,&quot;inputs&quot;)</param>
-                                </action>
                                 <action id="-10" name="Set value" sid="517286311463539" type="Player">
                                     <param id="0" name="Instance variable">pangle</param>
                                     <param id="1" name="Value">Multiplayer.PeerState(Multiplayer.PeerID,&quot;pangle&quot;)</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="377608610445370" type="Player">
+                                    <param id="0" name="Instance variable">moveangle</param>
+                                    <param id="1" name="Value">Multiplayer.PeerState(Multiplayer.PeerID,&quot;moveangle&quot;)</param>
                                 </action>
                                 <action id="-8" name="Set angle" sid="284916595840043" type="Player">
                                     <param id="0" name="Angle">Player.pangle</param>
                                 </action>
                             </actions>
                             <sub-events>
-                                <event-block sid="484833325558613">
+                                <event-block sid="722215620197759">
                                     <conditions>
-                                        <condition id="-8" name="Compare two values" sid="104630148045264" type="System">
-                                            <param id="0" name="First value">getbit(Player.inputs,0)</param>
-                                            <param id="1" name="Comparison">0</param>
-                                            <param id="2" name="Second value">1</param>
+                                        <condition id="-8" name="Compare two values" sid="667805949458830" type="System">
+                                            <param id="0" name="First value">Player.moveangle</param>
+                                            <param id="1" name="Comparison">4</param>
+                                            <param id="2" name="Second value">-1</param>
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action behavior="8Direction" id="7" name="Simulate control" sid="215622699037447" type="Player">
-                                            <param id="0" name="Control">2</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <event-block sid="417751037287380">
-                                    <conditions>
-                                        <condition id="-8" name="Compare two values" sid="457382865526710" type="System">
-                                            <param id="0" name="First value">getbit(Player.inputs,1)</param>
-                                            <param id="1" name="Comparison">0</param>
-                                            <param id="2" name="Second value">1</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action behavior="8Direction" id="7" name="Simulate control" sid="702920434828089" type="Player">
-                                            <param id="0" name="Control">0</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <event-block sid="698654865752899">
-                                    <conditions>
-                                        <condition id="-8" name="Compare two values" sid="496412619029167" type="System">
-                                            <param id="0" name="First value">getbit(Player.inputs,2)</param>
-                                            <param id="1" name="Comparison">0</param>
-                                            <param id="2" name="Second value">1</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action behavior="8Direction" id="7" name="Simulate control" sid="763471021424361" type="Player">
-                                            <param id="0" name="Control">3</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <event-block sid="284869351206652">
-                                    <conditions>
-                                        <condition id="-8" name="Compare two values" sid="299608756439490" type="System">
-                                            <param id="0" name="First value">getbit(Player.inputs,3)</param>
-                                            <param id="1" name="Comparison">0</param>
-                                            <param id="2" name="Second value">1</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action behavior="8Direction" id="7" name="Simulate control" sid="418783401728088" type="Player">
-                                            <param id="0" name="Control">1</param>
+                                        <action id="-23" name="Move at angle" sid="789370047712630" type="Player">
+                                            <param id="0" name="Angle">Player.moveangle</param>
+                                            <param id="1" name="Distance">4</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -364,125 +331,90 @@
                                     <param id="2" name="Value">Multiplayer.PeerID</param>
                                 </condition>
                             </conditions>
-                            <actions>
-                                <action id="-10" name="Set value" sid="186387328896678" type="Player">
-                                    <param id="0" name="Instance variable">pangle</param>
-                                    <param id="1" name="Value">int(Player.Angle)</param>
-                                </action>
-                            </actions>
+                            <actions />
                             <sub-events>
-                                <event-block sid="157983451807804">
+                                <event-block sid="669259331449983">
                                     <conditions>
-                                        <condition id="2" name="Key is down" sid="868788570304861" type="Keyboard">
-                                            <param id="0" name="Key">87</param>
+                                        <condition id="-8" name="Compare two values" sid="336203655163892" type="System">
+                                            <param id="0" name="First value">Touch.Beta</param>
+                                            <param id="1" name="Comparison">4</param>
+                                            <param id="2" name="Second value">0</param>
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action id="-10" name="Set value" sid="907208045969742" type="Player">
-                                            <param id="0" name="Instance variable">inputs</param>
-                                            <param id="1" name="Value">setbit(Self.inputs,0,1)</param>
+                                        <action id="-10" name="Set value" sid="531549889583325" type="Player">
+                                            <param id="0" name="Instance variable">pangle</param>
+                                            <param id="1" name="Value">int(-atan(Touch.Gamma/Touch.Beta))</param>
                                         </action>
                                     </actions>
                                 </event-block>
-                                <event-block sid="525764111990211">
+                                <event-block sid="344209527920858">
                                     <conditions>
-                                        <condition id="-22" name="Else" sid="906830514182093" type="System" />
+                                        <condition id="-22" name="Else" sid="911892762823889" type="System" />
                                     </conditions>
                                     <actions>
-                                        <action id="-10" name="Set value" sid="856804957218532" type="Player">
-                                            <param id="0" name="Instance variable">inputs</param>
-                                            <param id="1" name="Value">setbit(Self.inputs,0,0)</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <event-block sid="283340029227969">
-                                    <conditions>
-                                        <condition id="2" name="Key is down" sid="977712120270902" type="Keyboard">
-                                            <param id="0" name="Key">65</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action id="-10" name="Set value" sid="840174725990071" type="Player">
-                                            <param id="0" name="Instance variable">inputs</param>
-                                            <param id="1" name="Value">setbit(Self.inputs,1,1)</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <event-block sid="648889091120049">
-                                    <conditions>
-                                        <condition id="-22" name="Else" sid="509336723617197" type="System" />
-                                    </conditions>
-                                    <actions>
-                                        <action id="-10" name="Set value" sid="891905795813772" type="Player">
-                                            <param id="0" name="Instance variable">inputs</param>
-                                            <param id="1" name="Value">setbit(Self.inputs,1,0)</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <event-block sid="741477411848162">
-                                    <conditions>
-                                        <condition id="2" name="Key is down" sid="961141159449708" type="Keyboard">
-                                            <param id="0" name="Key">83</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action id="-10" name="Set value" sid="898722786717139" type="Player">
-                                            <param id="0" name="Instance variable">inputs</param>
-                                            <param id="1" name="Value">setbit(Self.inputs,2,1)</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <event-block sid="685186853601469">
-                                    <conditions>
-                                        <condition id="-22" name="Else" sid="307359902095907" type="System" />
-                                    </conditions>
-                                    <actions>
-                                        <action id="-10" name="Set value" sid="129588503231271" type="Player">
-                                            <param id="0" name="Instance variable">inputs</param>
-                                            <param id="1" name="Value">setbit(Self.inputs,2,0)</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <event-block sid="839226940519986">
-                                    <conditions>
-                                        <condition id="2" name="Key is down" sid="677276819293423" type="Keyboard">
-                                            <param id="0" name="Key">68</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action id="-10" name="Set value" sid="852190901471375" type="Player">
-                                            <param id="0" name="Instance variable">inputs</param>
-                                            <param id="1" name="Value">setbit(Self.inputs,3,1)</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <event-block sid="557630555924380">
-                                    <conditions>
-                                        <condition id="-22" name="Else" sid="722274086686192" type="System" />
-                                    </conditions>
-                                    <actions>
-                                        <action id="-10" name="Set value" sid="574881814405147" type="Player">
-                                            <param id="0" name="Instance variable">inputs</param>
-                                            <param id="1" name="Value">setbit(Self.inputs,3,0)</param>
+                                        <action id="-10" name="Set value" sid="897129829981602" type="Player">
+                                            <param id="0" name="Instance variable">pangle</param>
+                                            <param id="1" name="Value">int(180-atan(Touch.Gamma/Touch.Beta))</param>
                                         </action>
                                     </actions>
                                 </event-block>
                                 <event-block sid="844654538140682">
                                     <conditions />
                                     <actions>
-                                        <action id="14" name="Set client state" sid="417912161407542" type="Multiplayer">
-                                            <param id="0" name="Tag">&quot;inputs&quot;</param>
-                                            <param id="1" name="Value">Player.inputs</param>
-                                        </action>
                                         <action id="14" name="Set client state" sid="811659427466498" type="Multiplayer">
                                             <param id="0" name="Tag">&quot;pangle&quot;</param>
                                             <param id="1" name="Value">Player.pangle</param>
                                         </action>
                                     </actions>
                                 </event-block>
+                                <event-block sid="692734460917901">
+                                    <conditions>
+                                        <condition id="4" name="Is touching object" sid="362771790995356" type="Touch">
+                                            <param id="0" name="Object">biganalog</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-4" name="Set position to another object" sid="545462056597814" type="smallanalog">
+                                            <param id="0" name="Object">biganalog</param>
+                                            <param id="1" name="Image point (optional)">0</param>
+                                        </action>
+                                        <action id="-8" name="Set angle" sid="741666218851552" type="smallanalog">
+                                            <param id="0" name="Angle">angle(biganalog.X,biganalog.Y,Touch.X(&quot;HUD&quot;),Touch.Y(&quot;HUD&quot;))</param>
+                                        </action>
+                                        <action id="-23" name="Move at angle" sid="535900509022222" type="smallanalog">
+                                            <param id="0" name="Angle">Self.Angle</param>
+                                            <param id="1" name="Distance">min(distance(biganalog.X,biganalog.Y,Touch.X(&quot;HUD&quot;),Touch.Y(&quot;HUD&quot;)),75)</param>
+                                        </action>
+                                        <action id="-10" name="Set value" sid="872751789063160" type="Player">
+                                            <param id="0" name="Instance variable">moveangle</param>
+                                            <param id="1" name="Value">int(smallanalog.Angle)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="476786529762629">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="785561447045640" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" sid="372092235344289" type="Player">
+                                            <param id="0" name="Instance variable">moveangle</param>
+                                            <param id="1" name="Value">-1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="251310015160692">
+                                    <conditions />
+                                    <actions>
+                                        <action id="14" name="Set client state" sid="663300147241048" type="Multiplayer">
+                                            <param id="0" name="Tag">&quot;moveangle&quot;</param>
+                                            <param id="1" name="Value">Player.moveangle</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
                             </sub-events>
                         </event-block>
-                        <event-block sid="306069985271943">
+                        <event-block disabled="1" sid="306069985271943">
                             <conditions>
                                 <condition id="-7" name="Compare instance variable" sid="107423278318884" type="Player">
                                     <param id="0" name="Instance variable">id</param>
@@ -492,62 +424,16 @@
                             </conditions>
                             <actions />
                             <sub-events>
-                                <event-block sid="408113027652651">
+                                <event-block sid="316378251176409">
                                     <conditions>
-                                        <condition id="2" name="Key is down" sid="413432483802337" type="Keyboard">
-                                            <param id="0" name="Key">87</param>
+                                        <condition id="4" name="Is touching object" sid="516589094568714" type="Touch">
+                                            <param id="0" name="Object">biganalog</param>
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action behavior="8Direction" id="7" name="Simulate control" sid="385290558006906" type="Player">
-                                            <param id="0" name="Control">2</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <event-block sid="267699151914948">
-                                    <conditions>
-                                        <condition id="2" name="Key is down" sid="354669382197465" type="Keyboard">
-                                            <param id="0" name="Key">65</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action behavior="8Direction" id="7" name="Simulate control" sid="221083506368527" type="Player">
-                                            <param id="0" name="Control">0</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <event-block sid="357614108304878">
-                                    <conditions>
-                                        <condition id="2" name="Key is down" sid="988406175245173" type="Keyboard">
-                                            <param id="0" name="Key">83</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action behavior="8Direction" id="7" name="Simulate control" sid="247476923661259" type="Player">
-                                            <param id="0" name="Control">3</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <event-block sid="115461163293939">
-                                    <conditions>
-                                        <condition id="2" name="Key is down" sid="809553617739349" type="Keyboard">
-                                            <param id="0" name="Key">68</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action behavior="8Direction" id="7" name="Simulate control" sid="747414985485606" type="Player">
-                                            <param id="0" name="Control">1</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <event-block sid="685109164836579">
-                                    <conditions>
-                                        <condition id="-1" name="Every tick" sid="803937340876598" type="System" />
-                                    </conditions>
-                                    <actions>
-                                        <action id="-22" name="Set angle toward position" sid="754556399547025" type="Player">
-                                            <param id="0" name="X">Mouse.X</param>
-                                            <param id="1" name="Y">Mouse.Y</param>
+                                        <action id="-23" name="Move at angle" sid="582951894088301" type="Player">
+                                            <param id="0" name="Angle">smallanalog.Angle</param>
+                                            <param id="1" name="Distance">4</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -558,5 +444,26 @@
             </sub-events>
         </event-group>
         <event-group description="" sid="675032723168648" title="Common" />
+        <event-block sid="258572010436441">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="767820751415573" type="System" />
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="976917338303023" type="angletext">
+                    <param id="0" name="Text">&quot;alpha:&quot; &amp; Touch.Alpha &amp; &quot;  beta:&quot; &amp; Touch.Beta &amp; &quot;  gama:&quot; &amp; Touch.Gamma</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="739996634670247">
+            <conditions>
+                <condition id="1" name="On any touch end" sid="560022432860976" type="Touch" />
+            </conditions>
+            <actions>
+                <action id="-4" name="Set position to another object" sid="157452293884638" type="smallanalog">
+                    <param id="0" name="Object">biganalog</param>
+                    <param id="1" name="Image point (optional)">0</param>
+                </action>
+            </actions>
+        </event-block>
     </events>
 </c2eventsheet>
